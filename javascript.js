@@ -1,5 +1,7 @@
 let humanScore = 0, computerScore = 0;
 
+playGame(playRound);
+
 function getComputerChoice() {
   const randomNum = Math.random();
 
@@ -17,22 +19,7 @@ function getComputerChoice() {
 
 function getHumanChoice() {
   const userInput = prompt("Please input your choice: rock, scissors, or paper", "");
-
-  switch (userInput) {
-
-    case "rock":
-      return "rock";
-
-    case "scissors":
-      return "scissors";
-
-    case "paper":
-      return "paper";
-
-    default:
-      return 'User input is not correct. Should be rock, scissors, or paper'
-  }
-
+  return userInput;
 }
 
 function playRound(humanChoice, computerChoice) {
@@ -81,7 +68,7 @@ function playRound(humanChoice, computerChoice) {
     }
 
 
-     if (modify_humanChoice === 'paper' && computerChoice === 'scissors') {
+    if (modify_humanChoice === 'paper' && computerChoice === 'scissors') {
       console.log(`You chose ${humanChoice} 
       while computer opted ${computerChoice}, you lose as scissors beats paper`);
 
@@ -90,6 +77,36 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-playRound(humanSelection, computerSelection);
+//  Function playGame is used to play 5 rounds and decide the final winner
+function playGame(game) {
+
+  // Play game five times
+  let gameTimes = 0;
+  while (gameTimes !== 5) {
+   
+  // Initial and call human and computer selection by calling corresponding function
+  //which will be used by playAround function as an argument
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    game(humanSelection, computerSelection)
+    ++gameTimes;
+  }
+
+  if (humanScore > computerScore) {
+    console.log(`You will, as your score is ${humanScore} 
+      while computer get a score of ${computerScore} `);
+  } else if (humanScore < computerScore) {
+    console.log(`You lose, as your score is ${humanScore} 
+      while computer get a score of ${computerScore} `);
+  }
+  else {
+    console.log(`It is a tie, as your score is ${humanScore} 
+      while computer get a score of ${computerScore} `);
+  }
+
+  // reset the socre for next time game playing
+  humanScore = 0;
+  computerScore = 0;
+
+}
+
