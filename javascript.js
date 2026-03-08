@@ -78,20 +78,15 @@ function playRound(humanChoice, computerChoice) {
 }
 
 //  Function playGame is used to play 5 rounds and decide the final winner
-// game is callback function, which refers to function playRound() later;
+// game is is callback function, which refers to function playRound() later
 function playGame(game) {
-
-  // Play game five times
-  let gameTimes = 0;
-  while (gameTimes !== 5) {
    
   // Initial and call human and computer selection by calling corresponding function
   //which will be used by playAround function as an argument
     const humanSelection = getHumanChoice();
     const computerSelection = getComputerChoice();
     game(humanSelection, computerSelection)
-    ++gameTimes;
-  }
+  
 
   if (humanScore > computerScore) {
     console.log(`You will, as your score is ${humanScore} 
