@@ -78,6 +78,7 @@ function playRound(humanChoice, computerChoice) {
 }
 
 //  Function playGame is used to play 5 rounds and decide the final winner
+// game is callback function, which refers to function playRound() later;
 function playGame(game) {
 
   // Play game five times
