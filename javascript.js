@@ -1,8 +1,25 @@
 let humanScore = 0, computerScore = 0;
 
 const div = document.querySelector("div");
+const buttonPaper = document.querySelector('#button-paper');
+const buttonRock = document.querySelector('#button-rock');
+const buttonScissors = document.querySelector('#button-scissors');
 
-playGame(playRound);
+let humanSelection = "";
+buttonPaper.addEventListener("click", () => {
+  humanSelection = "paper";
+  playGame(playRound);
+
+});
+buttonRock.addEventListener("click", () => {
+  humanSelection = "rock";
+   playGame(playRound);
+});
+buttonScissors.addEventListener("click", () => {
+  humanSelection = "scissors"
+  playGame(playRound);
+});
+
 
 function getComputerChoice() {
   const randomNum = Math.random();
@@ -80,19 +97,6 @@ function playRound(humanChoice, computerChoice) {
 //  Function playGame is used to play 5 rounds and decide the final winner
 // game is is callback function, which refers to function playRound() later
 function playGame(game) {
-
-  const buttonPaper = document.querySelector('#button-paper');
-  const buttonRock = document.querySelector('#button-rock');
-  const buttonScissors = document.querySelector('#button-scissors');
-
-  let humanSelection = "";
-  buttonPaper.addEventListener("click", () => humanSelection = "paper");
-  buttonRock.addEventListener("click", () => humanSelection = "rock");
-  buttonScissors.addEventListener("click", () => humanSelection = "scissors");
-
-  console.log(`humanSelection: ${humanSelection}`);
-
-
   // Initial and call human and computer selection by calling corresponding function
   //which will be used by playAround function as an argument
 
