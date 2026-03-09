@@ -1,5 +1,7 @@
 let humanScore = 0, computerScore = 0;
 
+const div = document.querySelector("div");
+
 playGame(playRound);
 
 function getComputerChoice() {
@@ -82,33 +84,43 @@ function playGame(game) {
   const buttonScissors = document.querySelector('#button-scissors');
 
   let humanSelection = "";
-  buttonPaper.addEventListener("click",()=> humanSelection = "paper" );
-  buttonRock.addEventListener("click", ()=> humanSelection = "rock");
-  buttonScissors.addEventListener("click",()=> humanSelection = "scissors");
+  buttonPaper.addEventListener("click", () => humanSelection = "paper");
+  buttonRock.addEventListener("click", () => humanSelection = "rock");
+  buttonScissors.addEventListener("click", () => humanSelection = "scissors");
 
-   
+
   // Initial and call human and computer selection by calling corresponding function
   //which will be used by playAround function as an argument
-    
-    const computerSelection = getComputerChoice();
-    game(humanSelection, computerSelection)
-  
 
+  const computerSelection = getComputerChoice();
+  game(humanSelection, computerSelection)
+
+
+  const div_result = document.createElement("div");
+  const p_result = document.createElement("p");
+  div_result.appendChild(p_result);
+
+  if (humanScore == 5) {
   if (humanScore > computerScore) {
-    console.log(`You will, as your score is ${humanScore} 
-      while computer get a score of ${computerScore} `);
+    p_result.textContent = `You will, as your score is ${humanScore} 
+      while computer get a score of ${computerScore} `;
+
+    div.appendChild(div_result);
+
   } else if (humanScore < computerScore) {
-    console.log(`You lose, as your score is ${humanScore} 
-      while computer get a score of ${computerScore} `);
+    p_result.textContent = `You lose, as your score is ${humanScore} 
+      while computer get a score of ${computerScore} `;
+
+    div.appendChild(div_result);
   }
   else {
-    console.log(`It is a tie, as your score is ${humanScore} 
-      while computer get a score of ${computerScore} `);
-  }
+   p_result.textContent = `It is a tie, as your score is ${humanScore} 
+      while computer get a score of ${computerScore} `;
 
-  // reset the socre for next time game playing
-  humanScore = 0;
-  computerScore = 0;
+    div.appendChild(div_result);
+  }
+}
+  
 
 }
 
