@@ -109,4 +109,3 @@ function playGame(game) {
   computerScore = 0;
 
 }
-
