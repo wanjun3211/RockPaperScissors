@@ -21,55 +21,57 @@ function getComputerChoice() {
 
 
 function playRound(humanChoice, computerChoice) {
+  const div_result = document.createElement("div");
+  const p_result = document.createElement("p");
+  div_result.appendChild(p_result);
 
-  const modify_humanChoice = humanChoice.toLowerCase();
-
-  if (modify_humanChoice === computerChoice) {
-    console.log(`You chose ${humanChoice} 
-      while computer opted ${computerChoice}, and it is a tie`);
+  if (humanChoice === computerChoice) {
+    p_result.textContent = `You chose ${humanChoice} 
+      while computer opted ${computerChoice}, and it is a tie`;
+    div.appendChild(div_result);
   } else {
 
-    if (modify_humanChoice === 'rock' && computerChoice === 'paper') {
-      console.log(`You chose ${humanChoice} 
-      while computer opted ${computerChoice}, you lose as paper beats rock`);
-
+    if (humanChoice === 'rock' && computerChoice === 'paper') {
+      p_result.textContent = `You chose ${humanChoice} 
+      while computer opted ${computerChoice}, you lose as paper beats rock`;
+      div.appendChild(div_result);
       ++computerScore;
     }
 
-    if (modify_humanChoice === 'rock' && computerChoice === 'scissors') {
-      console.log(`You chose ${humanChoice} 
-      while computer opted ${computerChoice}, you win as rock beats scissors`);
-
+    if (humanChoice === 'rock' && computerChoice === 'scissors') {
+      p_result.textContent = `You chose ${humanChoice} 
+      while computer opted ${computerChoice}, you win as rock beats scissors`;
+      div.appendChild(div_result);
       ++humanScore;
     }
 
-    if (modify_humanChoice === 'scissors' && computerChoice === 'paper') {
-      console.log(`You chose ${humanChoice} 
-      while computer opted ${computerChoice}, you win as scissors beats paper`);
-
+    if (humanChoice === 'scissors' && computerChoice === 'paper') {
+      p_result.textContent = `You chose ${humanChoice} 
+      while computer opted ${computerChoice}, you win as scissors beats paper`;
+      div.appendChild(div_result);
       ++humanScore;
     }
 
-    if (modify_humanChoice === 'scissors' && computerChoice === 'rock') {
-      console.log(`You chose ${humanChoice} 
-      while computer opted ${computerChoice}, you lose as rock beats scissors`);
-
+    if (humanChoice === 'scissors' && computerChoice === 'rock') {
+      p_result.textContent = `You chose ${humanChoice} 
+      while computer opted ${computerChoice}, you lose as rock beats scissors`;
+      div.appendChild(div_result);
       ++computerScore;
     }
 
 
-    if (modify_humanChoice === 'paper' && computerChoice === 'rock') {
-      console.log(`You chose ${humanChoice} 
-      while computer opted ${computerChoice}, you win as paper beats rock`);
-
+    if (humanChoice === 'paper' && computerChoice === 'rock') {
+      p_result.textContent = `You chose ${humanChoice} 
+      while computer opted ${computerChoice}, you win as paper beats rock`;
+      div.appendChild(div_result);
       ++humanScore;
     }
 
 
-    if (modify_humanChoice === 'paper' && computerChoice === 'scissors') {
-      console.log(`You chose ${humanChoice} 
-      while computer opted ${computerChoice}, you lose as scissors beats paper`);
-
+    if (humanChoice === 'paper' && computerChoice === 'scissors') {
+      p_result.textContent = `You chose ${humanChoice} 
+      while computer opted ${computerChoice}, you lose as scissors beats paper`;
+      div.appendChild(div_result);
       ++computerScore;
     }
   }
@@ -88,6 +90,8 @@ function playGame(game) {
   buttonRock.addEventListener("click", () => humanSelection = "rock");
   buttonScissors.addEventListener("click", () => humanSelection = "scissors");
 
+  console.log(`humanSelection: ${humanSelection}`);
+
 
   // Initial and call human and computer selection by calling corresponding function
   //which will be used by playAround function as an argument
@@ -96,31 +100,31 @@ function playGame(game) {
   game(humanSelection, computerSelection)
 
 
-  const div_result = document.createElement("div");
-  const p_result = document.createElement("p");
-  div_result.appendChild(p_result);
+  const div_final_result = document.createElement("div");
+  const p_final_result = document.createElement("p");
+  div_final_result.appendChild(p_final_result);
 
-  if (humanScore == 5) {
-  if (humanScore > computerScore) {
-    p_result.textContent = `You will, as your score is ${humanScore} 
+  if (humanScore >= 5) {
+    if (humanScore > computerScore) {
+      p_final_result.textContent = `You will, as your score is ${humanScore} 
       while computer get a score of ${computerScore} `;
 
-    div.appendChild(div_result);
+      div.appendChild(div_final_result);
 
-  } else if (humanScore < computerScore) {
-    p_result.textContent = `You lose, as your score is ${humanScore} 
+    } else if (humanScore < computerScore) {
+      p_final_result.textContent = `You lose, as your score is ${humanScore} 
       while computer get a score of ${computerScore} `;
 
-    div.appendChild(div_result);
+      div.appendChild(div_final_result);
+    }
+    else {
+      p_final_result.textContent = `It is a tie, as your score is ${humanScore} 
+      while computer get a score of ${computerScore} `;
+
+      div.appendChild(div_final_result);
+    }
   }
-  else {
-   p_result.textContent = `It is a tie, as your score is ${humanScore} 
-      while computer get a score of ${computerScore} `;
 
-    div.appendChild(div_result);
-  }
-}
-  
 
 }
 
