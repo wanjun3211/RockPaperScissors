@@ -1,6 +1,25 @@
 let humanScore = 0, computerScore = 0;
 
-playGame(playRound);
+const div = document.querySelector("div");
+const buttonPaper = document.querySelector('#button-paper');
+const buttonRock = document.querySelector('#button-rock');
+const buttonScissors = document.querySelector('#button-scissors');
+
+let humanSelection = "";
+buttonPaper.addEventListener("click", () => {
+  humanSelection = "paper";
+  playGame(playRound);
+
+});
+buttonRock.addEventListener("click", () => {
+  humanSelection = "rock";
+   playGame(playRound);
+});
+buttonScissors.addEventListener("click", () => {
+  humanSelection = "scissors"
+  playGame(playRound);
+});
+
 
 function getComputerChoice() {
   const randomNum = Math.random();
@@ -17,95 +36,98 @@ function getComputerChoice() {
 }
 
 
-function getHumanChoice() {
-  const userInput = prompt("Please input your choice: rock, scissors, or paper", "");
-  return userInput;
-}
 
 function playRound(humanChoice, computerChoice) {
+  const div_result = document.createElement("div");
+  const p_result = document.createElement("p");
+  div_result.appendChild(p_result);
 
-  const modify_humanChoice = humanChoice.toLowerCase();
-
-  if (modify_humanChoice === computerChoice) {
-    console.log(`You chose ${humanChoice} 
-      while computer opted ${computerChoice}, and it is a tie`);
+  if (humanChoice === computerChoice) {
+    p_result.textContent = `You chose ${humanChoice} 
+      while computer opted ${computerChoice}, and it is a tie`;
+    div.appendChild(div_result);
   } else {
 
-    if (modify_humanChoice === 'rock' && computerChoice === 'paper') {
-      console.log(`You chose ${humanChoice} 
-      while computer opted ${computerChoice}, you lose as paper beats rock`);
-
+    if (humanChoice === 'rock' && computerChoice === 'paper') {
+      p_result.textContent = `You chose ${humanChoice} 
+      while computer opted ${computerChoice}, you lose as paper beats rock`;
+      div.appendChild(div_result);
       ++computerScore;
     }
 
-    if (modify_humanChoice === 'rock' && computerChoice === 'scissors') {
-      console.log(`You chose ${humanChoice} 
-      while computer opted ${computerChoice}, you win as rock beats scissors`);
-
+    if (humanChoice === 'rock' && computerChoice === 'scissors') {
+      p_result.textContent = `You chose ${humanChoice} 
+      while computer opted ${computerChoice}, you win as rock beats scissors`;
+      div.appendChild(div_result);
       ++humanScore;
     }
 
-    if (modify_humanChoice === 'scissors' && computerChoice === 'paper') {
-      console.log(`You chose ${humanChoice} 
-      while computer opted ${computerChoice}, you win as scissors beats paper`);
-
+    if (humanChoice === 'scissors' && computerChoice === 'paper') {
+      p_result.textContent = `You chose ${humanChoice} 
+      while computer opted ${computerChoice}, you win as scissors beats paper`;
+      div.appendChild(div_result);
       ++humanScore;
     }
 
-    if (modify_humanChoice === 'scissors' && computerChoice === 'rock') {
-      console.log(`You chose ${humanChoice} 
-      while computer opted ${computerChoice}, you lose as rock beats scissors`);
-
+    if (humanChoice === 'scissors' && computerChoice === 'rock') {
+      p_result.textContent = `You chose ${humanChoice} 
+      while computer opted ${computerChoice}, you lose as rock beats scissors`;
+      div.appendChild(div_result);
       ++computerScore;
     }
 
 
-    if (modify_humanChoice === 'paper' && computerChoice === 'rock') {
-      console.log(`You chose ${humanChoice} 
-      while computer opted ${computerChoice}, you win as paper beats rock`);
-
+    if (humanChoice === 'paper' && computerChoice === 'rock') {
+      p_result.textContent = `You chose ${humanChoice} 
+      while computer opted ${computerChoice}, you win as paper beats rock`;
+      div.appendChild(div_result);
       ++humanScore;
     }
 
 
-    if (modify_humanChoice === 'paper' && computerChoice === 'scissors') {
-      console.log(`You chose ${humanChoice} 
-      while computer opted ${computerChoice}, you lose as scissors beats paper`);
-
+    if (humanChoice === 'paper' && computerChoice === 'scissors') {
+      p_result.textContent = `You chose ${humanChoice} 
+      while computer opted ${computerChoice}, you lose as scissors beats paper`;
+      div.appendChild(div_result);
       ++computerScore;
     }
   }
 }
 
 //  Function playGame is used to play 5 rounds and decide the final winner
+// game is is callback function, which refers to function playRound() later
 function playGame(game) {
-
-  // Play game five times
-  let gameTimes = 0;
-  while (gameTimes !== 5) {
-   
   // Initial and call human and computer selection by calling corresponding function
   //which will be used by playAround function as an argument
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    game(humanSelection, computerSelection)
-    ++gameTimes;
+
+  const computerSelection = getComputerChoice();
+  game(humanSelection, computerSelection)
+
+
+  const div_final_result = document.createElement("div");
+  const p_final_result = document.createElement("p");
+  div_final_result.appendChild(p_final_result);
+
+  if (humanScore >= 5) {
+    if (humanScore > computerScore) {
+      p_final_result.textContent = `You will, as your score is ${humanScore} 
+      while computer get a score of ${computerScore} `;
+
+      div.appendChild(div_final_result);
+
+    } else if (humanScore < computerScore) {
+      p_final_result.textContent = `You lose, as your score is ${humanScore} 
+      while computer get a score of ${computerScore} `;
+
+      div.appendChild(div_final_result);
+    }
+    else {
+      p_final_result.textContent = `It is a tie, as your score is ${humanScore} 
+      while computer get a score of ${computerScore} `;
+
+      div.appendChild(div_final_result);
+    }
   }
 
-  if (humanScore > computerScore) {
-    console.log(`You will, as your score is ${humanScore} 
-      while computer get a score of ${computerScore} `);
-  } else if (humanScore < computerScore) {
-    console.log(`You lose, as your score is ${humanScore} 
-      while computer get a score of ${computerScore} `);
-  }
-  else {
-    console.log(`It is a tie, as your score is ${humanScore} 
-      while computer get a score of ${computerScore} `);
-  }
-
-  // reset the socre for next time game playing
-  humanScore = 0;
-  computerScore = 0;
 
 }
